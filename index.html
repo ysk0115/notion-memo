@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memo Widget</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #191919;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 16px;
+  }
+
+  .memo-box {
+    display: flex;
+    flex-direction: column;
+    background: #252525;
+    border: 1px solid #333;
+    border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .memo-box:focus-within {
+    border-color: #505050;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+  }
+
+  textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #d0d0d0;
+    line-height: 1.7;
+    padding: 14px 16px;
+    letter-spacing: 0.01em;
+  }
+
+  textarea::placeholder { color: #3a3a3a; }
+
+  .memo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 6px 12px;
+    border-top: 1px solid #2e2e2e;
+    gap: 8px;
+  }
+
+  .char-count {
+    font-size: 11px;
+    color: #3a3a3a;
+    letter-spacing: 0.03em;
+  }
+
+  .clear-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #3a3a3a;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    transition: color 0.15s;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    gap: 4px;
+  }
+  .clear-btn:hover { color: #888; }
+</style>
+</head>
+<body>
+  <div class="memo-box">
+    <textarea id="memo" placeholder="メモ..."></textarea>
+    <div class="memo-footer">
+      <span class="char-count" id="charCount">0</span>
+      <button class="clear-btn" onclick="clearMemo()">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+        クリア
+      </button>
+    </div>
+  </div>
+
+<script>
+  const memo = document.getElementById('memo');
+  const charCount = document.getElementById('charCount');
+
+  memo.addEventListener('input', () => {
+    charCount.textContent = memo.value.length;
+  });
+
+  function clearMemo() {
+    memo.value = '';
+    charCount.textContent = '0';
+    memo.focus();
+  }
+</script>
+</body>
+</html>
