@@ -114,7 +114,7 @@
     </div>
     <textarea id="memo" placeholder=""></textarea>
     <div class="memo-footer">
-      <span class="char-count" id="charCount">0</span>
+      <span class="char-count" id="charCount">0 B</span>
       <button class="clear-btn" onclick="clearMemo()">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -130,12 +130,12 @@
   const charCount = document.getElementById('charCount');
 
   memo.addEventListener('input', () => {
-    charCount.textContent = memo.value.length;
+    const b = memo.value.split("").reduce((n, c) => n + (c.match(/[ -~]/) ? 1 : 2), 0); charCount.textContent = b + " B";
   });
 
   function clearMemo() {
     memo.value = '';
-    charCount.textContent = '0';
+    charCount.textContent = "0 B";
     memo.focus();
   }
 </script>
