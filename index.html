@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Memo Widget</title>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&display=swap');
 
@@ -36,6 +37,26 @@
     box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
   }
 
+  .memo-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid #2e2e2e;
+  }
+
+  .memo-header i {
+    font-size: 13px;
+    color: #555;
+  }
+
+  .memo-header span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #555;
+    letter-spacing: 0.05em;
+  }
+
   textarea {
     flex: 1;
     background: transparent;
@@ -47,7 +68,7 @@
     font-weight: 300;
     color: #d0d0d0;
     line-height: 1.7;
-    padding: 14px 16px;
+    padding: 12px 16px;
     letter-spacing: 0.01em;
   }
 
@@ -80,13 +101,18 @@
     font-size: 11px;
     letter-spacing: 0.03em;
     gap: 4px;
+    font-family: 'DM Sans', sans-serif;
   }
   .clear-btn:hover { color: #888; }
 </style>
 </head>
 <body>
   <div class="memo-box">
-    <textarea id="memo" placeholder="memo..."></textarea>
+    <div class="memo-header">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="color:#555"><path d="M21.41 11.58L12.41 2.58A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9a2 2 0 0 0 2.82 0l7-7a2 2 0 0 0 0-2.84zM7 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+      <span>memo</span>
+    </div>
+    <textarea id="memo" placeholder=""></textarea>
     <div class="memo-footer">
       <span class="char-count" id="charCount">0</span>
       <button class="clear-btn" onclick="clearMemo()">
